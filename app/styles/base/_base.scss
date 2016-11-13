@@ -6,6 +6,8 @@
 @import "../bourbon/bourbon";
 @import "../neat/neat";
 
+@import "../libs/animate";
+
 @import "font-stacks";
 @import "variables";
 
@@ -21,4 +23,5 @@
 @import "global-animations";
 @import "section-intro";
 @import "section-benefits";
+@import "section-about";
 
