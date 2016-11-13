@@ -3,6 +3,8 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
+  text-redering: optimizeLegibillity;
+  -moz-font-feature-settings: "dlig";
 }
 
 h1,

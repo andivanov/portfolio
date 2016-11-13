@@ -24,13 +24,19 @@
   </head>
   <body>
 
-    <article id="intro">
-      <h1>
-          <span class="aiv"><span class="opacity">My name is</span> Andrei</span> <span class="opacity">I am</span> <span class="accent-color" data-typer-targets="{ &quot;targets&quot; : [&quot;UX designer&quot;, &quot;UI designer&quot;, &quot;Front-End Developer&quot;, &quot;Interaction designer&quot;, &quot;UI developer&quot;]}"></span>.
+    <article id="intro" class="intro">
+      <h1 class="intro-title js-intro-title">
+          My name is Andrei, I am
+          <span class="accent-color block"
+                data-typer-targets="{ &quot;targets&quot; : [
+                                      &quot;UX designer&quot;,
+                                      &quot;UI designer&quot;,
+                                      &quot;Front-End Developer&quot;,
+                                      &quot;Interaction designer&quot;,
+                                      &quot;UI developer&quot;]}">
+          </span>
       </h1>
-      <a class="arrow-wrap" href="#benefits">
-          <span class="arrow"></span>
-      </a>
+      <a class="intro-nav" href="#benefits"><span class="intro-nav-arrow"></span></a>
       <div class="intro-bg">
         <span class="intro-image"></span>
         <span class="intro-image-2"></span>
@@ -61,6 +67,7 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
+    <script src="scripts/typer.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
   </body>
