@@ -13,12 +13,19 @@
     $('.intro-image-3').plaxify({'xRange':10,'yRange':15});
     $.plax.enable();
 
-    $(document).scroll(function() {
-        var pos = $(document).scrollTop();
-        var parallax = parseInt(pos * -0.3) + 'px';
-        $('.js-intro-title').css('margin-top', parallax);
+
+    //Smooth scrolling
+    $('a[href*=#]:not([href=#])').click(function() {
+    if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+            $('html,body').animate({
+                scrollTop: target.offset().top
+            }, 1000);
+            return false;
+            }
+        }
     });
-
-
 
 })();
