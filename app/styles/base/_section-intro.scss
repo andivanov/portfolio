@@ -1,0 +1,70 @@
+
+#intro {
+	min-height: 550px;
+	background: $dark;
+	width: 100%;
+    @include media($medium-screen){
+		top: 0;
+		left: 0;
+		min-height: 100vh;
+		position: fixed;
+	}
+	h1 {
+		z-index: 1;
+	}
+}
+
+
+
+.intro-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.intro-image {
+    background-image: url('../images/intro-bg-1.svg');
+	position: absolute;
+    top: 0;
+    bottom: 0;
+    background-size: cover;
+	width: 100%;
+    filter: blur(2px);
+	opacity: 0.3;
+    z-index: 3;
+    @include media($medium-screen){
+		max-width: 60%;
+	}
+    @include media($large-screen){
+		max-width: 45%;
+	}
+}
+.intro-image-2 {
+	@include media($large-screen){
+        background-image: url('../images/intro-bg-2.svg');
+		position: absolute;
+        top: 0;
+        left: 40vw!important;
+        bottom: 0;
+        background-size: cover;
+		width: 30%;
+        filter: blur(4px);
+		opacity: 0.2;
+        z-index: 1;
+	}
+}
+.intro-image-3 {
+	@include media($medium-screen){
+        background-image: url('../images/intro-bg-2.svg');
+		position: absolute;
+        top: 0;
+        left: 65vw!important;
+        bottom: 0;
+		background-size: cover;
+        width: 50%;
+		filter: blur(3px);
+        opacity: 0.2;
+        z-index: 2;
+	}
+}
