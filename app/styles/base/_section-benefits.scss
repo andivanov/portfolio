@@ -25,6 +25,7 @@
 
     background: $bullet-bg;
     border-bottom: 1px solid $bullet-border-color;
+    padding: 1em 0;
     &:last-child {
         border-bottom: none;
         margin-bottom: 3em;
@@ -32,13 +33,14 @@
 
     @include media($large-screen) {
         @include row(table);
+        padding: 0;
     }
 
     .bullet-image {
         padding: 1em 1em 0 1em;
         @include media($large-screen) {
             @include span-columns(3);
-            padding: 3em 0;
+            padding: 2em 0;
         }
     }
 
@@ -48,7 +50,7 @@
         vertical-align: middle;
         @include media($large-screen) {
             @include span-columns(9);
-            padding: 3em 0;
+            padding: 2em 0;
         }
     }
     @include reset-display();

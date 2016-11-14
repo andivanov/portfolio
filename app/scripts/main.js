@@ -39,7 +39,7 @@
             var windowInnerHeight = window.innerHeight;
             var elementTopToWindowTop = elementTopToPageTop - windowTopToPageTop;
             var elementTopToWindowBottom = windowInnerHeight - elementTopToWindowTop;
-            var distanceFromBottomToAppear = 300;
+            var distanceFromBottomToAppear = 200;
 
             if (elementTopToWindowBottom > distanceFromBottomToAppear) {
                 $(element[i]).addClass('zoomIn');
