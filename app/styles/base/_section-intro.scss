@@ -14,7 +14,7 @@
 .intro-header {
     position: relative;
     z-index: 5;
-    padding-top: 35vh;
+    padding-top: 30vh;
     font-size: 2vw;
     @include media($medium-screen){
         font-size: 1.8vw;
@@ -23,7 +23,7 @@
 
 .intro-header-title {
     font-size: 4em;
-    line-height: 1.5;
+    line-height: $base-line-height;
     color: #fff;
     text-align: center;
     text-shadow: 2px 2px 6px $dark;

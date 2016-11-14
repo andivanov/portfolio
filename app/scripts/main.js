@@ -31,25 +31,48 @@
 
     //Fade in elements
     var element = $('.js-fadeInElement');
-    $(element).addClass('js-fade-element-hide');
+    $(element).addClass('zoomOut');
     $(window).scroll(function() {
-        for (let i = 0; i < element.length; i++) {
-            let elementTopToPageTop = $(element[i]).offset().top;
-            let windowTopToPageTop = $(window).scrollTop();
-            let windowInnerHeight = window.innerHeight;
-            let elementTopToWindowTop = elementTopToPageTop - windowTopToPageTop;
-            let elementTopToWindowBottom = windowInnerHeight - elementTopToWindowTop;
-            let distanceFromBottomToAppear = 200;
+        for (var i = 0; i < element.length; i++) {
+            var elementTopToPageTop = $(element[i]).offset().top;
+            var windowTopToPageTop = $(window).scrollTop();
+            var windowInnerHeight = window.innerHeight;
+            var elementTopToWindowTop = elementTopToPageTop - windowTopToPageTop;
+            var elementTopToWindowBottom = windowInnerHeight - elementTopToWindowTop;
+            var distanceFromBottomToAppear = 300;
 
             if (elementTopToWindowBottom > distanceFromBottomToAppear) {
-                $(element[i]).addClass('js-fade-element-show');
+                $(element[i]).addClass('zoomIn');
+                $(element[i]).removeClass('zoomOut');
             }
             else if (elementTopToWindowBottom < 0) {
-                $(element[i]).removeClass('js-fade-element-show');
-                $(element[i]).addClass('js-fade-element-hide');
+                $(element[i]).removeClass('zoomIn');
+                $(element[i]).addClass('zoomOut');
             }
         }
     });
+
+    //Retina
+    var Retina = function() {
+        'use strict';
+        return {
+            init: function(){
+                //Get pixel ratio and perform retina replacement
+                //Optionally, you may also check a cookie to see if the user has opted out of (or in to) retina support
+                var pixelRatio = !!window.devicePixelRatio ? window.devicePixelRatio : 1;
+                if (pixelRatio > 1) {
+                    $('img').each(function(idx, el){
+                        el = $(el);
+                        if (el.attr('data-src2x')) {
+                            el.attr('data-src-orig', el.attr('src'));
+                            el.attr('src', el.attr('data-src2x'));
+                        }
+                    });
+                }
+            }
+        };
+    }();
+    Retina.init();
 
 
 })();
