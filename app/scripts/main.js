@@ -31,7 +31,7 @@
 
     //Fade in elements
     var element = $('.js-fadeInElement');
-    $(element).addClass('zoomOut');
+    $(element).addClass('fadeOut');
     $(window).scroll(function() {
         for (var i = 0; i < element.length; i++) {
             var elementTopToPageTop = $(element[i]).offset().top;
@@ -42,12 +42,12 @@
             var distanceFromBottomToAppear = 200;
 
             if (elementTopToWindowBottom > distanceFromBottomToAppear) {
-                $(element[i]).addClass('zoomIn');
-                $(element[i]).removeClass('zoomOut');
+                $(element[i]).addClass('fadeIn');
+                $(element[i]).removeClass('fadeOut');
             }
             else if (elementTopToWindowBottom < 0) {
-                $(element[i]).removeClass('zoomIn');
-                $(element[i]).addClass('zoomOut');
+                $(element[i]).removeClass('fadeIn');
+                $(element[i]).addClass('fadeOut');
             }
         }
     });

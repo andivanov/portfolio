@@ -18,6 +18,7 @@ h6 {
   font-size: modular-scale(1);
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
+  font-weight: normal;
 }
 
 p {
@@ -57,7 +58,7 @@ hr {
       font-size: 1.8vw;
   }
   .header {
-    font-size: 3.2em;
+    font-size: 4em;
     @include media($medium-screen){
       font-size: 1.5em;
     }

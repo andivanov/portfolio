@@ -22,7 +22,7 @@
 }
 
 .intro-header-title {
-    font-size: 4em;
+    font-size: 5em;
     line-height: $base-line-height;
     color: #fff;
     text-align: center;
@@ -42,7 +42,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 .intro-image {
     background-image: url('../images/intro-bg-1.svg');
