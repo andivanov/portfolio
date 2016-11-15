@@ -3,6 +3,7 @@ body {
   font-family: $base-font-family;
   font-size: $base-font-size;
   line-height: $base-line-height;
+  font-weight: 400;
   text-redering: optimizeLegibillity;
   -moz-font-feature-settings: "dlig";
 }
@@ -33,6 +34,11 @@ a {
   &:hover {
     color: shade($action-color, 25%);
   }
+}
+
+b,
+strong {
+  font-weight: 700;
 }
 
 hr {

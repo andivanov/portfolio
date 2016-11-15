@@ -1,7 +1,8 @@
 
 .benefits {
     min-height: 100vh;
-    background-color: #fff;
+    color: white;
+    background-image: url(../images/bg/background-polygons@2x.png),linear-gradient(-180deg,#2FAE90 0,#2F92AE 34%,#5286D4 51%,#4B89CD 100%);
     overflow: hidden;
 }
 
@@ -21,9 +22,8 @@
 
 .bullet {
     $bullet-bg: #fff;
-    $bullet-border-color: rgba(0, 0, 0, 0.1);
+    $bullet-border-color: rgba(255, 255, 255, 0.3);
 
-    background: $bullet-bg;
     border-bottom: 1px solid $bullet-border-color;
     padding: 1em 0;
     &:last-child {

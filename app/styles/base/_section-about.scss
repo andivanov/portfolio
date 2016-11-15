@@ -1,7 +1,11 @@
 
+$about-section-bg: #fff;
+
 .about {
     min-height: 100vh;
-    background-color: #E8E9EB;
+    color: #fff;
+    background-image: url(../images/bg/background-polygons@2x.png),linear-gradient(-180deg,#4B89CD 0, #5286D4 34%, #2F92AE 51%,#2FAE90  100% );
+    overflow: hidden;
 }
 
 .cards {
@@ -9,73 +13,71 @@
   flex-wrap: wrap;
   justify-content: space-between;
   @include outer-container;
+  @include media($medium-screen) {
+    margin-top: 10vh;
+  }
 }
 
 .card {
-  $card-base-spacing: 1.5em !default;
+  $card-base-spacing: 2em;
   $dark-gray: #333 !default;
   $base-font-color: $dark-gray !default;
-  $card-border-color: rgba(0, 0, 0, 0.1);
+  $card-border-color: rgba(255, 255, 255, 0.1);
   $card-border: 1px solid $card-border-color;
-  $card-background: #ffffff;
+  $card-border-radius: 4px;
+  $card-background: transparent;
   $card-header-background: $card-background;
   $card-margin: 1em;
   $card-image-hover-opacity: 0.7;
   $card-image-hover-color: #F8F2B4;
 
   background-color: $card-background;
-  border: $card-border;
-  box-shadow: 0 2px 4px darken($card-background, 10%);
-  cursor: pointer;
-  flex-basis: 15em;
+  border-bottom: $card-border;
+  flex-basis: 20em;
   flex-grow: 1;
-  margin: 0 $card-margin $card-base-spacing $card-margin;
   position: relative;
   transition: all 0.2s ease-in-out;
+  padding: 3em 0;
+  @include media($medium-screen) {
+    padding: 1em 0 0;
+    border-bottom: none;
+    border-right: $card-border;
+    &:first-child {
+      text-align: right;
+    }
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+
+
 
   .card-image {
-    background-color: $card-image-hover-color;
-    height: 150px;
-    max-height: 150px;
+    height: 100px;
+    max-height: 100px;
     overflow: hidden;
+    padding: 0 3em;
 
     img {
       opacity: 1;
       transition: all 0.2s ease-in-out;
-      width: 100%;
     }
   }
 
   .card-header {
     background-color: $card-header-background;
-    border-bottom: $card-border;
-    font-weight: bold;
-    padding: ($card-base-spacing / 3) ($card-base-spacing / 2);
+    padding: 2em 3em 1em;
     transition: all 0.2s ease-in-out;
+    h3 {
+      margin-bottom: 0;
+    }
   }
 
   .card-copy {
-    font-size: 0.9em;
-    padding: ($card-base-spacing / 2) ($card-base-spacing / 2);
-    p {
-      margin: 0 0 ($card-base-spacing / 2);
-    }
-  }
-
-  &:focus,
-  &:hover {
-    cursor: pointer;
-
-    img {
-      opacity: $card-image-hover-opacity;
-    }
-  }
-
-  &:active {
-    background-color: $card-background;
-
-    .card-header {
-      background-color: $card-background;
+    padding: 1em 3em;
+    li {
+      margin-bottom: 8px;
     }
   }
 }
