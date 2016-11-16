@@ -40,7 +40,7 @@
         padding: 1em 1em 0 1em;
         @include media($large-screen) {
             @include span-columns(3);
-            padding: 2em 0;
+            padding: 4em 0;
         }
     }
 
@@ -50,7 +50,7 @@
         vertical-align: middle;
         @include media($large-screen) {
             @include span-columns(9);
-            padding: 2em 0;
+            padding: 3em 0;
         }
     }
     @include reset-display();
