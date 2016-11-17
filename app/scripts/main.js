@@ -14,6 +14,28 @@
     $.plax.enable();
 
 
+    //header scroller
+    $(document).scroll(function() {
+        var $el = $('.js-intro-header');
+        var elHeight = $el.innerHeight()
+        var pos = $(document).scrollTop();
+        var parallax = parseInt(pos * -0.3) + 'px';
+        var fadeStart = 0;
+        var fadeUntil = elHeight / 1.2;
+        var opacity = 0;
+
+        if( pos <= fadeStart ){
+          opacity = 1;
+        } else if( pos <= fadeUntil ){
+          opacity = 1 - pos/fadeUntil;
+        }
+
+        $el.css({
+            'margin-top': parallax,
+            'opacity': opacity
+        });
+    });
+
     //Smooth scrolling
     $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {

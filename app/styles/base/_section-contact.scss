@@ -5,3 +5,15 @@
         margin-bottom: 2em;
     }
 }
+
+.contact-link {
+    display: inline-block;
+    margin: 0 0.35em;
+    transition: all 0.2s ease;
+    &:hover,
+    &:focus,
+    &:active {
+        transform: scale(1.1);
+        transform-origin: center center;
+    }
+}
