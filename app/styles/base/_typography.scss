@@ -6,6 +6,11 @@ body {
   font-weight: 400;
   text-redering: optimizeLegibillity;
   -moz-font-feature-settings: "dlig";
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  min-height: 100%;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -23,7 +28,6 @@ h6 {
 
 p {
   margin: 0 0 $small-spacing;
-  text-align:       justify;
   -webkit-hyphens:  auto;
   -moz-hyphens:     auto;
   -ms-hyphens:      auto;
@@ -65,6 +69,7 @@ hr {
   }
   .header {
     font-size: 4em;
+    font-weight: 700;
     @include media($medium-screen){
       font-size: 2.5em;
     }

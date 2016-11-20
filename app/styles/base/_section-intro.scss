@@ -23,6 +23,7 @@
 
 .intro-header-title {
     font-size: 5em;
+    font-weight: 700;
     line-height: $base-line-height;
     color: #fff;
     text-align: center;
@@ -114,8 +115,8 @@
         display: block;
         border-bottom: none;
         opacity: (0.15);
-        transition: all .3s ease;
         &:hover {
+            transition: all .3s ease;
             top: 80.5vh;
             opacity: (0.30);
         }

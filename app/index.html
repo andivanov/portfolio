@@ -14,7 +14,8 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:400,400i,700" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700" rel="stylesheet">
 
     <!-- build:css styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
@@ -27,7 +28,7 @@
   <body>
 
     <article id="intro" class="intro">
-      <header class="intro-header js-intro-header">
+      <header class="intro-header js-intro-header gsap-intro-header">
         <h1 class="intro-header-title">
             <span class="block">Hi there!</span> I am Andrei Ivanov.
             <span class="accent-color block"
@@ -40,11 +41,11 @@
             </span>
         </h1>
       </header>
-      <a class="intro-nav" href="#benefits"><span class="intro-nav-arrow"></span></a>
+      <a class="intro-nav gsap-intro-nav" href="#benefits"><span class="intro-nav-arrow"></span></a>
       <div class="intro-bg">
-        <span class="intro-image"></span>
-        <span class="intro-image-2"></span>
-        <span class="intro-image-3"></span>
+        <span class="gsap-intro-bg intro-image"></span>
+        <span class="gsap-intro-bg intro-image-2"></span>
+        <span class="gsap-intro-bg intro-image-3"></span>
       </div>
     </article>
 
@@ -271,6 +272,11 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
+    <script src="scripts/lib/TweenLite.min.js"></script>
+    <script src="scripts/lib/TimelineLite.min.js"></script>
+    <script src="scripts/lib/CSSPlugin.min.js"></script>
+    <script src="scripts/lib/EasePack.min.js"></script>
+    <script src="scripts/gsap.js"></script>
     <script src="scripts/typer.js"></script>
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
