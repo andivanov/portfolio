@@ -1,6 +1,4 @@
-
-
-(function() {
+(function gsap() {
 
     var elIntroHeader = $('.gsap-intro-header');
     var elIntroNav = $('.gsap-intro-nav');
@@ -16,6 +14,6 @@
         autoAlpha: 0,
     }, 0.5).from(elIntroNav, 0.5, {
         autoAlpha: 0
-    }, '+= 3');
+        }, '+= 3');
 
-})();
+} ());
