@@ -1,20 +1,28 @@
-
 .intro {
-	min-height: 100vh;
-	background: $dark;
+    height: 100vh;
+    min-height: 30em;
+    // background: #37474E;//$dark;
+    background-image: linear-gradient(45deg,#13C5AA 0,#4D77CC 100%);
 	width: 100%;
     position: relative;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 97%);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 97%);
     @include media($medium-screen){
 		top: 0;
-		left: 0;
+        left: 0;
+        padding: 2vw;
 	}
 }
 
 .intro-header {
+    display: block;
     position: relative;
     z-index: 5;
-    padding-top: 30vh;
     font-size: 2vw;
     @include media($medium-screen){
         font-size: 1.8vw;
@@ -47,36 +55,35 @@
 }
 .intro-image {
     background-image: url('../images/intro-bg-1.svg');
-	position: absolute;
-    top: 0;
+    position: absolute;
+    top: 5vh;
     bottom: 0;
     background-size: cover;
-	width: 100%;
-    filter: blur(3px);
-	opacity: 0.2;
+    width: 100%;
+    opacity: 0.2;
     z-index: 3;
+    will-change: transform;
     @include media($medium-screen){
-		max-width: 60%;
-        filter: blur(2px);
-	    opacity: 0.3;
+        max-width: 60%;
+        opacity: 0.3;
 
-	}
+    }
     @include media($large-screen){
-		max-width: 45%;
-	}
+        max-width: 45%;
+    }
 }
 .intro-image-2 {
 	@include media($large-screen){
         background-image: url('../images/intro-bg-2.svg');
 		position: absolute;
         top: 0;
-        left: 40vw!important;
+        left: 40vw;
         bottom: 0;
         background-size: cover;
 		width: 30%;
-        filter: blur(4px);
-		opacity: 0.2;
+		opacity: 0.1;
         z-index: 1;
+        will-change: transform;
 	}
 }
 .intro-image-3 {
@@ -84,13 +91,13 @@
         background-image: url('../images/intro-bg-2.svg');
 		position: absolute;
         top: 0;
-        left: 65vw!important;
+        left: 65vw;
         bottom: 0;
 		background-size: cover;
         width: 50%;
-		filter: blur(3px);
         opacity: 0.2;
         z-index: 2;
+        will-change: transform;
 	}
 }
 
@@ -101,23 +108,19 @@
 .intro-nav {
     display: none;
     @include media($medium-screen) {
-        position: absolute;
-        z-index: 4;
-        left: 50%;
-        top: 80vh;
-        margin-left: -3em;
+        display: block;
+        // align-self: flex-end;
         background: $light;
         width: 6em;
         height: 6em;
         padding: 2em;
         border-radius: 50%;
         font-size: 0.5em;
-        display: block;
         border-bottom: none;
         opacity: (0.15);
         &:hover {
             transition: all .3s ease;
-            top: 80.5vh;
+            // top: 80.5vh;
             opacity: (0.30);
         }
     }

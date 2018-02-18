@@ -9,7 +9,7 @@
         autoAlpha: 0,
         y: -50,
         ease: Power1.easeOut,
-        delay: 0.75
+        delay: 2.3
     }).staggerFrom(elIntroBg, 0.75, {
         autoAlpha: 0,
     }, 0.5).from(elIntroNav, 0.5, {

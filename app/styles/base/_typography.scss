@@ -1,8 +1,8 @@
 body {
   color: $base-font-color;
   font-family: $base-font-family;
-  font-size: $base-font-size;
-  line-height: $base-line-height;
+  font-size: calc(#{$base-font-size} + .1vw);
+  line-height: calc(#{$base-spacing} + .1vw);
   font-weight: 400;
   text-redering: optimizeLegibillity;
   -moz-font-feature-settings: "dlig";
@@ -20,10 +20,10 @@ h4,
 h5,
 h6 {
   font-family: $heading-font-family;
-  font-size: modular-scale(2);
+  font-size: modular-scale(4);
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
-  font-weight: 400;
+  // font-weight: 400;
 }
 
 p {

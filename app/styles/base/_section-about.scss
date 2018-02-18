@@ -38,6 +38,7 @@ $about-section-bg: #fff;
   position: relative;
   transition: all 0.2s ease-in-out;
   padding: 3em 0;
+  will-change: opacity;
   @include media($medium-screen) {
     padding: 1em 0 0;
     border-bottom: none;
