@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 .intro {
     min-height: 100vh;
     background: var(--dark);

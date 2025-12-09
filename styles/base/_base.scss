@@ -6,27 +6,27 @@
 // @import "../bourbon/bourbon";
 // @import "../neat/neat";
 
-@import "../libs/animate";
+@use "../libs/animate";
 
-@import "font-stacks";
-@import "css-variables";
-@import "variables";
+@use "font-stacks";
+@use "css-variables";
+@use "variables";
 
-@import "global";
+@use "global";
 
-@import "buttons";
-@import "forms";
-@import "layout";
-@import "lists";
-@import "media";
-@import "tables";
-@import "typography";
+@use "buttons";
+@use "forms";
+@use "layout";
+@use "lists";
+@use "media";
+@use "tables";
+@use "typography";
 
-@import "global-animations";
-@import "section-intro";
-@import "section-benefits";
-@import "section-work";
-@import "section-about";
-@import "section-contact";
+@use "global-animations";
+@use "section-intro";
+@use "section-benefits";
+@use "section-work";
+@use "section-about";
+@use "section-contact";
 
-@import "footer";
+@use "footer";
