@@ -1,27 +1,30 @@
-
 $about-section-bg: #fff;
 
 .about {
-    min-height: 100vh;
-    color: #fff;
-    background-image: url(/images/bg/background-polygons@2x.png), linear-gradient(-180deg,#4B89CD 0, #2FAE90 100%);
-    overflow: hidden;
+  min-height: 100vh;
+  color: #fff;
+  background-image: url(/images/bg/background-polygons@2x.png), linear-gradient(-180deg, #4B89CD 0, #2FAE90 100%);
+  overflow: hidden;
 }
 
 .cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  @include outer-container;
-  @include media($medium-screen) {
+  // outer-container replacement
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: $medium-screen) {
     margin-top: 10vh;
   }
 }
 
 .card {
   $card-base-spacing: 2em;
-  $dark-gray: #333 !default;
-  $base-font-color: $dark-gray !default;
+  $dark-gray: #333 !default; // These should ideally come from vars but strict refactor leaves defaults if localized overriding happens
+  $base-font-color: var(--dark-gray);
   $card-border-color: rgba(255, 255, 255, 0.1);
   $card-border: 1px solid $card-border-color;
   $card-border-radius: 4px;
@@ -38,13 +41,16 @@ $about-section-bg: #fff;
   position: relative;
   transition: all 0.2s ease-in-out;
   padding: 3em 0;
-  @include media($medium-screen) {
+
+  @media (min-width: $medium-screen) {
     padding: 1em 0 0;
     border-bottom: none;
     border-right: $card-border;
+
     &:first-child {
       text-align: right;
     }
+
     &:last-child {
       border-right: none;
     }
@@ -69,6 +75,7 @@ $about-section-bg: #fff;
     background-color: $card-header-background;
     padding: 2em 3em 1em;
     transition: all 0.2s ease-in-out;
+
     h3 {
       margin-bottom: 0;
     }
@@ -76,6 +83,7 @@ $about-section-bg: #fff;
 
   .card-copy {
     padding: 1em 3em;
+
     li {
       margin-bottom: 8px;
     }

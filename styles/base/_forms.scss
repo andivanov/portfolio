@@ -27,30 +27,46 @@ textarea {
   font-size: $base-font-size;
 }
 
-#{$all-text-inputs} {
+
+[type="color"],
+[type="date"],
+[type="datetime"],
+[type="datetime-local"],
+[type="email"],
+[type="month"],
+[type="number"],
+[type="password"],
+[type="search"],
+[type="tel"],
+[type="text"],
+[type="time"],
+[type="url"],
+[type="week"],
+input:not([type]),
+textarea {
   appearance: none;
-  background-color: $base-background-color;
+  background-color: var(--base-background-color);
   border: $base-border;
-  border-radius: $base-border-radius;
+  border-radius: var(--base-border-radius);
   box-shadow: $form-box-shadow;
   box-sizing: border-box;
   margin-bottom: $small-spacing;
-  padding: math.div($base-spacing, 3);
+  padding: calc(var(--base-spacing) / 3);
   transition: border-color $base-duration $base-timing;
   width: 100%;
 
   &:hover {
-    border-color: shade($base-border-color, 20%);
+    border-color: var(--base-border-color-hover);
   }
 
   &:focus {
-    border-color: $action-color;
+    border-color: var(--action-color);
     box-shadow: $form-box-shadow-focus;
     outline: none;
   }
 
   &:disabled {
-    background-color: shade($base-background-color, 5%);
+    background-color: var(--base-background-color-disabled);
     cursor: not-allowed;
 
     &:hover {
@@ -59,7 +75,7 @@ textarea {
   }
 
   &::placeholder {
-    color: tint($base-font-color, 40%);
+    color: var(--placeholder-color);
   }
 }
 

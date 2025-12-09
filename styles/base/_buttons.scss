@@ -1,8 +1,12 @@
-#{$all-buttons} {
+button,
+[type="button"],
+[type="reset"],
+[type="submit"],
+[role="button"] {
   appearance: none;
-  background-color: $action-color;
+  background-color: var(--action-color);
   border: 0;
-  border-radius: $base-border-radius;
+  border-radius: var(--base-border-radius);
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -21,7 +25,7 @@
 
   &:hover,
   &:focus {
-    background-color: shade($action-color, 20%);
+    background-color: var(--action-color-hover);
     color: #fff;
   }
 
@@ -30,7 +34,8 @@
     opacity: 0.5;
 
     &:hover {
-      background-color: $action-color;
+      background-color: var(--action-color);
     }
   }
+
 }

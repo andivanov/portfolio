@@ -1,21 +1,25 @@
-
 .benefits {
     min-height: 100vh;
     color: white;
-    background-image: url(/images/bg/background-polygons@2x.png),linear-gradient(-180deg,#2FAE90 0,#2F92AE 34%,#5286D4 51%,#4B89CD 100%);
+    background-image: url(/images/bg/background-polygons@2x.png), linear-gradient(-180deg, #2FAE90 0, #2F92AE 34%, #5286D4 51%, #4B89CD 100%);
     overflow: hidden;
 }
 
 
 .bullets {
-    @include outer-container;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1em;
 }
+
 .bullet-container {
-    @include span-columns(10);
-    @include shift(1);
-    @include media($medium-screen){
-        @include span-columns(6);
-        @include shift(3);
+    // Mobile first: default block/full width or almost full
+    width: 83.333%;
+    margin-left: 8.333%;
+
+    @media (min-width: $medium-screen) {
+        width: 50%;
+        margin-left: 25%;
     }
 }
 
@@ -24,34 +28,41 @@
     $bullet-bg: #fff;
     $bullet-border-color: rgba(255, 255, 255, 0.3);
 
-    border-bottom: 1px solid $bullet-border-color;
+    border-bottom: 1px solid var(--bullet-border-color);
     padding: 1em 0;
+
     &:last-child {
         border-bottom: none;
         margin-bottom: 3em;
     }
 
-    @include media($large-screen) {
-        @include row(table);
+    @media (min-width: $large-screen) {
+        display: table; // Was mixin row(table)
+        width: 100%;
         padding: 0;
     }
 
     .bullet-image {
         padding: 1em 1em 0 1em;
-        @include media($large-screen) {
-            @include span-columns(3);
+
+        @media (min-width: $large-screen) {
+            display: table-cell;
+            vertical-align: top;
+            width: 25%; // span-columns(3) -> 3/12 = 25%
             padding: 4em 0;
         }
     }
 
     .bullet-content {
-        @include span-columns(12);
+        // span-columns(12) -> 100%
+        width: 100%;
         padding: 1em;
         vertical-align: middle;
-        @include media($large-screen) {
-            @include span-columns(9);
+
+        @media (min-width: $large-screen) {
+            display: table-cell;
+            width: 75%; // span-columns(9) -> 9/12 = 75%
             padding: 3em 0;
         }
     }
-    @include reset-display();
 }

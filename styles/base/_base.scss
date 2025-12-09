@@ -3,15 +3,17 @@
 // Copyright 2013-2015 thoughtbot, inc.
 // MIT License
 
-@import "../bourbon/bourbon";
-@import "../neat/neat";
+// @import "../bourbon/bourbon";
+// @import "../neat/neat";
 
 @import "../libs/animate";
 
 @import "font-stacks";
+@import "css-variables";
 @import "variables";
 
 @import "global";
+
 @import "buttons";
 @import "forms";
 @import "layout";
@@ -28,4 +30,3 @@
 @import "section-contact";
 
 @import "footer";
-

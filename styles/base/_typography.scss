@@ -8,6 +8,7 @@ body {
   -moz-font-feature-settings: "dlig";
 }
 
+// Headers
 h1,
 h2,
 h3,
@@ -15,7 +16,7 @@ h4,
 h5,
 h6 {
   font-family: $heading-font-family;
-  font-size: modular-scale(2);
+  font-size: 1.5em; // replaced modular-scale(2)
   line-height: $heading-line-height;
   margin: 0 0 $small-spacing;
   font-weight: 400;
@@ -23,23 +24,23 @@ h6 {
 
 p {
   margin: 0 0 $small-spacing;
-  text-align:       justify;
-  -webkit-hyphens:  auto;
-  -moz-hyphens:     auto;
-  -ms-hyphens:      auto;
-  -o-hyphens:       auto;
-  hyphens:          auto;
+  text-align: justify;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  -o-hyphens: auto;
+  hyphens: auto;
 }
 
 a {
-  color: $action-color;
+  color: var(--action-color);
   text-decoration: none;
   transition: color $base-duration $base-timing;
 
   &:active,
   &:focus,
   &:hover {
-    color: shade($action-color, 25%);
+    color: var(--action-color-hover);
   }
 }
 
@@ -60,15 +61,19 @@ hr {
   text-align: center;
   padding-top: 5vh;
   font-size: 2vw;
-  @include media($medium-screen){
-      font-size: 1.8vw;
+
+  @media (min-width: $medium-screen) {
+    font-size: 1.8vw;
   }
+
   .header {
     font-size: 4em;
-    @include media($medium-screen){
+
+    @media (min-width: $medium-screen) {
       font-size: 2.5em;
     }
-    @include media($large-screen){
+
+    @media (min-width: $large-screen) {
       font-size: 1.5em;
     }
   }

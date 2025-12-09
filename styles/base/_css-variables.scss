@@ -1,0 +1,45 @@
+:root {
+    /* Colors */
+    --my-color: #27B091;
+    --my-secondary-color: #8dafcb;
+    --dark: #222;
+    --light: #fff;
+    --blue: #1565c0;
+    --dark-gray: #333;
+    --medium-gray: #999;
+    --light-gray: #ddd;
+
+    /* Font Colors */
+    --base-font-color: var(--dark-gray);
+    --action-color: var(--blue);
+    --bullet-bg: #fff;
+    --bullet-border-color: rgba(255, 255, 255, 0.3);
+
+    /* Backgrounds */
+    --base-background-color: #fff;
+    --secondary-background-color: #f7f9fa;
+    /* Tint approx */
+    --work-section-bg: #fff;
+    --about-section-bg: #fff;
+
+    /* Spacing */
+    --base-spacing: 1.55em;
+    --small-spacing: calc(var(--base-spacing) / 2);
+
+    /* Borders */
+    --base-border-color: var(--light-gray);
+    --base-border-color-hover: #bbb;
+    /* shade(light-gray, 20%) approx */
+    --base-border-radius: 3px;
+
+    /* Breakpoints */
+    --medium-screen: 600px;
+    --large-screen: 900px;
+
+    /* Dynamic Colors (Derived) */
+    --action-color-hover: #0d47a1;
+    /* shade(blue, 20%) approx */
+    --placeholder-color: #777;
+    /* tint(dark-gray, 40%) approx */
+    --base-background-color-disabled: #f2f2f2;
+}
