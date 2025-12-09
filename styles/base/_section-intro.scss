@@ -123,14 +123,24 @@
         border-radius: 50%;
         font-size: 0.5em;
         display: block;
-        border-bottom: none;
-        opacity: (0.15);
-        transition: all .3s ease;
+        opacity: 0.15;
+        animation: fadeInWithDelay 1s backwards 2s; // 1s duration, 2s delay, backwards fill (hidden during delay)
+        transition: top 0.3s ease, opacity 0.3s ease; // Keep existing hover transitions
 
         &:hover {
             top: 80.5vh;
-            opacity: (0.30);
+            opacity: 0.30;
         }
+    }
+}
+
+@keyframes fadeInWithDelay {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.15;
     }
 }
 
@@ -144,7 +154,6 @@
     border-style: solid;
     border-width: 2em 2em 0 2em;
     border-color: var(--dark) transparent transparent transparent;
-    transform: rotate(360deg);
     transition: all .3s ease;
 
     &:after {
@@ -157,6 +166,5 @@
         border-style: solid;
         border-width: 2em 2em 0 2em;
         border-color: var(--light) transparent transparent transparent;
-        transform: rotate(360deg);
     }
 }
