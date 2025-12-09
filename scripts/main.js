@@ -1,140 +1,133 @@
-import $ from 'jquery';
-
-// Make jQuery global for legacy scripts
-window.jQuery = window.$ = $;
-
-import './typer.js';
-import './lib/plax.js';
+import 'normalize.css';
 import '../styles/main.scss';
+import { Typer } from './lib/typer.js';
 
-$(function () {
+document.addEventListener('DOMContentLoaded', () => {
 
-    var date = new Date();
-    var thisYear = date.getFullYear();
-    $('.js-year').html(thisYear);
+    // 1. Year Update
+    const date = new Date();
+    const thisYear = date.getFullYear();
+    const yearEl = document.querySelector('.js-year');
+    if (yearEl) yearEl.textContent = thisYear;
 
-    $('[data-typer-targets]').typer();
+    // 2. Typer
+    const typerEls = document.querySelectorAll('[data-typer-targets]');
+    typerEls.forEach(el => new Typer(el));
 
-    //Intro section - Plax effect
-    $('.intro-image').plaxify({ 'xRange': 10, 'yRange': 20 });
-    $('.intro-image-2').plaxify({ 'xRange': 7, 'yRange': 10 });
-    $('.intro-image-3').plaxify({ 'xRange': 10, 'yRange': 15 });
-    $.plax.enable();
+    // 3. Parallax (Plax replacement)
+    const introImage = document.querySelector('.intro-image');
+    const introImage2 = document.querySelector('.intro-image-2');
+    const introImage3 = document.querySelector('.intro-image-3');
+    const parallaxImages = [
+        { el: introImage, xRange: 10, yRange: 20 },
+        { el: introImage2, xRange: 7, yRange: 10 },
+        { el: introImage3, xRange: 10, yRange: 15 }
+    ];
 
+    if (introImage && window.matchMedia('(hover: hover)').matches) {
+        document.body.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
 
-    //header scroller
-    $(document).scroll(function () {
-        var $el = $('.js-intro-header');
-        var elHeight = $el.innerHeight()
-        var pos = $(document).scrollTop();
-        var parallax = parseInt(pos * -0.3) + 'px';
-        var fadeStart = 0;
-        var fadeUntil = elHeight / 1.2;
-        var opacity = 0;
+            parallaxImages.forEach(item => {
+                if (!item.el) return;
+                const xVal = ((x - w / 2) / (w / 2)) * item.xRange;
+                const yVal = ((y - h / 2) / (h / 2)) * item.yRange;
+                item.el.style.transform = `translate3d(${xVal}px, ${yVal}px, 0)`;
+            });
+        });
+    }
 
-        if (pos <= fadeStart) {
-            opacity = 1;
-        } else if (pos <= fadeUntil) {
-            opacity = 1 - pos / fadeUntil;
-        }
+    // 4. Header Scroller (Fade/Parallax on scroll)
+    const introHeader = document.querySelector('.js-intro-header');
+    if (introHeader) {
+        window.addEventListener('scroll', () => {
+            const elHeight = introHeader.offsetHeight;
+            const pos = window.scrollY;
+            const parallax = Math.floor(pos * -0.3);
+            const fadeUntil = elHeight / 1.2;
 
-        $el.css({
-            'margin-top': parallax,
-            'opacity': opacity
+            let opacity = 0;
+            if (pos <= 0) opacity = 1; // Start full opacity
+            else if (pos <= fadeUntil) opacity = 1 - pos / fadeUntil;
+
+            introHeader.style.marginTop = `${parallax}px`;
+            introHeader.style.opacity = opacity;
+        });
+    }
+
+    // 5. Smooth Scrolling
+    document.querySelectorAll('a[href^="#"]:not([href="#"])').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            // Only if same path/hostname (simplified for single page portfolio)
+            const targetId = this.getAttribute('href').substring(1);
+            const target = document.getElementById(targetId) || document.getElementsByName(targetId)[0];
+
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
-    //Smooth scrolling
-    $('a[href*="#"]:not([href="#"])').click(function () {
-        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: target.offset().top
-                }, 1000);
-                return false;
+    // 6. Fade In Elements (IntersectionObserver)
+    const fadeElements = document.querySelectorAll('.js-fadeInElement');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px" // Trigger slightly before bottom
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fadeIn');
+                entry.target.classList.remove('fadeOut');
+            } else {
+                // Optional: fade out when leaving view, mimicking original behavior?
+                // Original checked distance < 0 which means top of element passed top of window?
+                // Usually for these reveal animations we only fade IN once. 
+                // But let's keep it simple: if strict legacy behavior needed, we'd need more logic.
+                // For now, let's sticky with fade IN only which is better UX.
+                // If double binding needed:
+                // entry.target.classList.remove('fadeIn');
+                // entry.target.classList.add('fadeOut');
             }
-        }
+        });
+    }, observerOptions);
+
+    fadeElements.forEach(el => {
+        el.classList.add('fadeOut'); // Initial state
+        observer.observe(el);
     });
 
-
-    //Fade in elements
-    var element = $('.js-fadeInElement');
-    $(element).addClass('fadeOut');
-    $(window).scroll(function () {
-        for (var i = 0; i < element.length; i++) {
-            var elementTopToPageTop = $(element[i]).offset().top;
-            var windowTopToPageTop = $(window).scrollTop();
-            var windowInnerHeight = window.innerHeight;
-            var elementTopToWindowTop = elementTopToPageTop - windowTopToPageTop;
-            var elementTopToWindowBottom = windowInnerHeight - elementTopToWindowTop;
-            var distanceFromBottomToAppear = 200;
-
-            if (elementTopToWindowBottom > distanceFromBottomToAppear) {
-                $(element[i]).addClass('fadeIn');
-                $(element[i]).removeClass('fadeOut');
-            }
-            else if (elementTopToWindowBottom < 0) {
-                $(element[i]).removeClass('fadeIn');
-                $(element[i]).addClass('fadeOut');
-            }
-        }
-    });
-
-    //Retina
-    var Retina = function () {
-        'use strict';
-        return {
-            init: function () {
-                //Get pixel ratio and perform retina replacement
-                //Optionally, you may also check a cookie to see if the user has opted out of (or in to) retina support
-                var pixelRatio = !!window.devicePixelRatio ? window.devicePixelRatio : 1;
-                if (pixelRatio > 1) {
-                    $('img').each(function (idx, el) {
-                        el = $(el);
-                        if (el.attr('data-src2x')) {
-                            el.attr('data-src-orig', el.attr('src'));
-                            el.attr('src', el.attr('data-src2x'));
-                        }
-                    });
-                }
-            }
-        };
-    }();
-    Retina.init();
-
-
-    //Parallax
-    if ($('#js-parallax-window').length) {
-        parallax();
+    // 7. Retina Logic
+    const pixelRatio = window.devicePixelRatio || 1;
+    if (pixelRatio > 1) {
+        document.querySelectorAll('img[data-src2x]').forEach(img => {
+            img.setAttribute('data-src-orig', img.getAttribute('src'));
+            img.setAttribute('src', img.getAttribute('data-src2x'));
+        });
     }
 
-    $(window).scroll(function (e) {
-        if ($('#js-parallax-window').length) {
-            parallax();
-        }
-    });
+    // 8. BG Parallax (Simple vertical parallax)
+    const plxWindow = document.getElementById('js-parallax-window');
+    const plxBackground = document.getElementById('js-parallax-background');
+    if (plxWindow && plxBackground) {
+        window.addEventListener('scroll', () => {
+            const plxWindowTop = plxWindow.getBoundingClientRect().top + window.scrollY;
+            const windowScroll = window.scrollY;
+            const windowTopToPlx = plxWindowTop - windowScroll;
+            const plxSpeed = 0.35;
 
-    function parallax() {
-        if ($('#js-parallax-window').length > 0) {
-            var plxBackground = $('#js-parallax-background');
-            var plxWindow = $('#js-parallax-window');
-
-            var plxWindowTopToPageTop = $(plxWindow).offset().top;
-            var windowTopToPageTop = $(window).scrollTop();
-            var plxWindowTopToWindowTop = plxWindowTopToPageTop - windowTopToPageTop;
-
-            var plxBackgroundTopToPageTop = $(plxBackground).offset().top;
-            var windowInnerHeight = window.innerHeight;
-            var plxBackgroundTopToWindowTop = plxBackgroundTopToPageTop - windowTopToPageTop;
-            var plxBackgroundTopToWindowBottom = windowInnerHeight - plxBackgroundTopToWindowTop;
-            var plxSpeed = 0.35;
-
-            plxBackground.css('top', - (plxWindowTopToWindowTop * plxSpeed) + 'px');
-        }
+            // Logic derived from original: top = -(diff * speed)
+            // If windowTopToPlx is the distance from viewport top to element top.
+            plxBackground.style.top = `${-(windowTopToPlx * plxSpeed)}px`;
+        });
     }
-
 
 });
 
