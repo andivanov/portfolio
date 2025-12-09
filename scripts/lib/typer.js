@@ -6,7 +6,6 @@ export class Typer {
             typeSpeed: 100,
             clearDelay: 500,
             typeDelay: 500,
-            clearOnHighlight: true,
             typerInterval: 4000
         }, options);
 
@@ -22,19 +21,25 @@ export class Typer {
             this.targets = this.options.targets;
         }
 
-        this.init();
+        this.abortController = new AbortController();
+        this.loop(this.abortController.signal);
     }
 
-    init() {
-        this.intervalId = setInterval(() => {
-            this.typeRandom();
-        }, this.options.typerInterval);
-        this.typeRandom();
+    // Utility to wait for ms
+    wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
     }
 
-    typeRandom() {
+    async loop(signal) {
+        while (!signal.aborted) {
+            await this.typeRandom();
+            await this.wait(this.options.typerInterval);
+        }
+    }
+
+    async typeRandom() {
         const target = this.targets[Math.floor(Math.random() * this.targets.length)];
-        this.typeTo(target);
+        await this.typeTo(target);
     }
 
     async typeTo(text) {
@@ -47,61 +52,36 @@ export class Typer {
             i++;
         }
 
-        // Highlight/Delete difference
         const leftStop = i;
-        const rightStop = currentText.length;
 
-        await this.highlightAndDelete(leftStop, rightStop);
+        // 1. Delete characters (Simulated highlight/delete)
+        await this.deleteTo(leftStop);
 
-        // Type new text
+        // 2. Wait clear delay
+        if (leftStop < currentText.length) {
+            await this.wait(this.options.clearDelay);
+        }
+
+        // 3. Type new characters
         const textToType = text.substring(leftStop);
         await this.typeText(textToType);
     }
 
-    highlightAndDelete(leftStop, rightStop) {
-        return new Promise(resolve => {
-            let currentRight = rightStop;
-
-            const step = () => {
-                if (currentRight <= leftStop) {
-                    // Deleted all needed, wait clear delay
-                    setTimeout(() => {
-                        this.element.textContent = this.element.textContent.substring(0, leftStop);
-                        resolve();
-                    }, this.options.clearDelay);
-                    return;
-                }
-
-                // Highlight effect (simulated by just deleting for simplicity in Vanilla, 
-                // or could wrap in span. For valid replacement of original plugin which mostly deleted:
-                // Original plugin used background color selection effect. We will approximate with backspace 
-                // for cleaner vanilla implementation unless "highlight" is critical. 
-                // The original logic was complex creating spans. Let's do a simple typing effect first specific to the requests.)
-
-                // Actually, let's just delete char by char for a "backspace" effect which is often cleaner.
-                // If the user wants the highlight style specifically, we can add it, but backspace is standard "typer".
-                this.element.textContent = this.element.textContent.substring(0, currentRight - 1);
-                currentRight--;
-                setTimeout(step, this.options.highlightSpeed);
-            };
-
-            step();
-        });
+    async deleteTo(targetLength) {
+        let currentText = this.element.textContent;
+        while (currentText.length > targetLength) {
+            currentText = currentText.substring(0, currentText.length - 1);
+            this.element.textContent = currentText;
+            await this.wait(this.options.highlightSpeed);
+        }
     }
 
-    typeText(text) {
-        return new Promise(resolve => {
-            let i = 0;
-            const step = () => {
-                if (i >= text.length) {
-                    resolve();
-                    return;
-                }
-                this.element.textContent += text[i];
-                i++;
-                setTimeout(step, this.options.typeSpeed);
-            };
-            setTimeout(step, this.options.typeDelay);
-        });
+    async typeText(text) {
+        await this.wait(this.options.typeDelay);
+        for (const char of text) {
+            this.element.textContent += char;
+            await this.wait(this.options.typeSpeed);
+        }
     }
 }
+
