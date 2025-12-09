@@ -1,5 +1,13 @@
+import $ from 'jquery';
 
-(function () {
+// Make jQuery global for legacy scripts
+window.jQuery = window.$ = $;
+
+import './typer.js';
+import './lib/plax.js';
+import '../styles/main.scss';
+
+$(function () {
 
     var date = new Date();
     var thisYear = date.getFullYear();
@@ -8,14 +16,14 @@
     $('[data-typer-targets]').typer();
 
     //Intro section - Plax effect
-    $('.intro-image').plaxify({'xRange':10,'yRange':20});
-	$('.intro-image-2').plaxify({'xRange':7,'yRange':10});
-    $('.intro-image-3').plaxify({'xRange':10,'yRange':15});
+    $('.intro-image').plaxify({ 'xRange': 10, 'yRange': 20 });
+    $('.intro-image-2').plaxify({ 'xRange': 7, 'yRange': 10 });
+    $('.intro-image-3').plaxify({ 'xRange': 10, 'yRange': 15 });
     $.plax.enable();
 
 
     //header scroller
-    $(document).scroll(function() {
+    $(document).scroll(function () {
         var $el = $('.js-intro-header');
         var elHeight = $el.innerHeight()
         var pos = $(document).scrollTop();
@@ -24,10 +32,10 @@
         var fadeUntil = elHeight / 1.2;
         var opacity = 0;
 
-        if( pos <= fadeStart ){
-          opacity = 1;
-        } else if( pos <= fadeUntil ){
-          opacity = 1 - pos/fadeUntil;
+        if (pos <= fadeStart) {
+            opacity = 1;
+        } else if (pos <= fadeUntil) {
+            opacity = 1 - pos / fadeUntil;
         }
 
         $el.css({
@@ -37,15 +45,15 @@
     });
 
     //Smooth scrolling
-    $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') === this.pathname.replace(/^\//,'') && location.hostname === this.hostname) {
-        var target = $(this.hash);
-        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-        if (target.length) {
-            $('html,body').animate({
-                scrollTop: target.offset().top
-            }, 1000);
-            return false;
+    $('a[href*="#"]:not([href="#"])').click(function () {
+        if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {
+            var target = $(this.hash);
+            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+            if (target.length) {
+                $('html,body').animate({
+                    scrollTop: target.offset().top
+                }, 1000);
+                return false;
             }
         }
     });
@@ -54,7 +62,7 @@
     //Fade in elements
     var element = $('.js-fadeInElement');
     $(element).addClass('fadeOut');
-    $(window).scroll(function() {
+    $(window).scroll(function () {
         for (var i = 0; i < element.length; i++) {
             var elementTopToPageTop = $(element[i]).offset().top;
             var windowTopToPageTop = $(window).scrollTop();
@@ -75,15 +83,15 @@
     });
 
     //Retina
-    var Retina = function() {
+    var Retina = function () {
         'use strict';
         return {
-            init: function(){
+            init: function () {
                 //Get pixel ratio and perform retina replacement
                 //Optionally, you may also check a cookie to see if the user has opted out of (or in to) retina support
                 var pixelRatio = !!window.devicePixelRatio ? window.devicePixelRatio : 1;
                 if (pixelRatio > 1) {
-                    $('img').each(function(idx, el){
+                    $('img').each(function (idx, el) {
                         el = $(el);
                         if (el.attr('data-src2x')) {
                             el.attr('data-src-orig', el.attr('src'));
@@ -102,14 +110,14 @@
         parallax();
     }
 
-    $(window).scroll(function(e) {
+    $(window).scroll(function (e) {
         if ($('#js-parallax-window').length) {
             parallax();
         }
     });
 
-    function parallax(){
-        if( $('#js-parallax-window').length > 0 ) {
+    function parallax() {
+        if ($('#js-parallax-window').length > 0) {
             var plxBackground = $('#js-parallax-background');
             var plxWindow = $('#js-parallax-window');
 
@@ -128,4 +136,5 @@
     }
 
 
-})();
+});
+

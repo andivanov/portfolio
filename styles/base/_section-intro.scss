@@ -45,7 +45,7 @@
     overflow: hidden;
 }
 .intro-image {
-    background-image: url('../images/intro-bg-1.svg');
+    background-image: url('/images/intro-bg-1.svg');
 	position: absolute;
     top: 0;
     bottom: 0;
@@ -66,7 +66,7 @@
 }
 .intro-image-2 {
 	@include media($large-screen){
-        background-image: url('../images/intro-bg-2.svg');
+        background-image: url('/images/intro-bg-2.svg');
 		position: absolute;
         top: 0;
         left: 40vw!important;
@@ -80,7 +80,7 @@
 }
 .intro-image-3 {
 	@include media($medium-screen){
-        background-image: url('../images/intro-bg-2.svg');
+        background-image: url('/images/intro-bg-2.svg');
 		position: absolute;
         top: 0;
         left: 65vw!important;
