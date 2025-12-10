@@ -2,8 +2,27 @@
 $work-section-bg: #fff;
 
 .work {
-    background-color: var(--work-section-bg);
+    background: var(--current-work-bg);
+    color: var(--current-work-text);
     overflow: hidden;
+    min-height: 100vh;
+    background-size: 100% 100%;
+    transition: background 3s ease; // Slow transition for theme changes
+    position: relative; // For pseudo-element
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        background-image: url('/images/noise.svg');
+        opacity: 0.4;
+        mix-blend-mode: overlay;
+    }
+
 
     .bullet-image {
         @media (min-width: $large-screen) {
@@ -25,4 +44,18 @@ $work-section-bg: #fff;
     }
 
     // Clearfix for floated columns if needed, or rely on overflow: hidden above
+}
+
+@keyframes liquidGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }

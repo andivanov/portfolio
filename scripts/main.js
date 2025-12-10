@@ -129,5 +129,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // 9. Time-Based Theme (Day/Night) for Work Section
+    const hours = new Date().getHours();
+    // Night is before 6 AM or after 6 PM (18:00)
+    const isNight = hours < 6 || hours >= 18;
+
+    if (isNight) {
+        document.body.classList.add('theme-night');
+    } else {
+        document.body.classList.remove('theme-night');
+    }
+
 });
+
 

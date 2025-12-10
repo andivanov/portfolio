@@ -40,3 +40,22 @@
     --base-background-color-disabled: #f2f2f2;
     --table-header-border-color: #bbb;
 }
+
+:root {
+    /* Time-based Theme Definitions */
+    --day-work-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --day-work-text: var(--dark-gray);
+
+    /* Reference Match: Dark Moody Linear Wave (Deep Navy -> Magenta -> Deep Indigo -> Dark Violet) */
+    --night-work-bg: linear-gradient(135deg, #020024 0%, #7d1369 40%, #2e003e 70%, #0d001a 100%);
+    --night-work-text: #f0f0f0;
+
+    /* Default (Day) Mappings */
+    --current-work-bg: var(--day-work-bg);
+    --current-work-text: var(--day-work-text);
+}
+
+body.theme-night {
+    --current-work-bg: var(--night-work-bg);
+    --current-work-text: var(--night-work-text);
+}
