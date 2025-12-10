@@ -24,12 +24,16 @@ $work-section-bg: #fff;
     }
 
 
-    display: flex;
-    flex-direction: column;
+    // Clearfix for floated columns if needed, or rely on overflow: hidden above
 
-    @media (min-width: $large-screen) {
-        flex-direction: row;
-        align-items: center;
+    .bullet {
+        display: flex;
+        flex-direction: column;
+
+        @media (min-width: $large-screen) {
+            flex-direction: row;
+            align-items: center;
+        }
     }
 
     .bullet-image {
@@ -48,6 +52,7 @@ $work-section-bg: #fff;
         }
     }
 }
+
 
 
 @keyframes liquidGradient {
